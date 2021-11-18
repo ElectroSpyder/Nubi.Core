@@ -6,5 +6,6 @@
     public interface IPaisService
     {
         Task<Response> GetPais(string id);
+        Task<Response> GetBusqueda(string busqueda);
     }
 }

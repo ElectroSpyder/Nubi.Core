@@ -1,4 +1,6 @@
-﻿namespace Nubi.Core.Application.DTO
+﻿using Nubi.Core.Domain.Models;
+
+namespace Nubi.Core.Application.DTO
 {
     public class Response
     {

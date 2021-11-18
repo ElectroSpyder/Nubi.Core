@@ -2,59 +2,58 @@
 
 namespace Nubi.Core.Domain.Models
 {
-    
-        public partial class Temperatures
-        {
-            [JsonProperty("id")]
-            public string Id { get; set; }
+    public partial class Temperatures
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-            [JsonProperty("name")]
-            public string Name { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-            [JsonProperty("locale")]
-            public string Locale { get; set; }
+        [JsonProperty("locale")]
+        public string Locale { get; set; }
 
-            [JsonProperty("currency_id")]
-            public string CurrencyId { get; set; }
+        [JsonProperty("currency_id")]
+        public string CurrencyId { get; set; }
 
-            [JsonProperty("decimal_separator")]
-            public string DecimalSeparator { get; set; }
+        [JsonProperty("decimal_separator")]
+        public string DecimalSeparator { get; set; }
 
-            [JsonProperty("thousands_separator")]
-            public string ThousandsSeparator { get; set; }
+        [JsonProperty("thousands_separator")]
+        public string ThousandsSeparator { get; set; }
 
-            [JsonProperty("time_zone")]
-            public string TimeZone { get; set; }
+        [JsonProperty("time_zone")]
+        public string TimeZone { get; set; }
 
-            [JsonProperty("geo_information")]
-            public GeoInformation GeoInformation { get; set; }
+        [JsonProperty("geo_information")]
+        public GeoInformation GeoInformation { get; set; }
 
-            [JsonProperty("states")]
-            public State[] States { get; set; }
-        }
+        [JsonProperty("states")]
+        public State[] States { get; set; }
+    }
 
-        public partial class GeoInformation
-        {
-            [JsonProperty("location")]
-            public Location Location { get; set; }
-        }
+    public partial class GeoInformation
+    {
+        [JsonProperty("location")]
+        public Location Location { get; set; }
+    }
 
-        public partial class Location
-        {
-            [JsonProperty("latitude")]
-            public double Latitude { get; set; }
+    public partial class Location
+    {
+        [JsonProperty("latitude")]
+        public double Latitude { get; set; }
 
-            [JsonProperty("longitude")]
-            public double Longitude { get; set; }
-        }
+        [JsonProperty("longitude")]
+        public double Longitude { get; set; }
+    }
 
-        public partial class State
-        {
-            [JsonProperty("id")]
-            public string Id { get; set; }
+    public class State
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-            [JsonProperty("name")]
-            public string Name { get; set; }
-        }
-    
+        [JsonProperty("name")]
+        public string Name { get; set; }
+    }
+
 }

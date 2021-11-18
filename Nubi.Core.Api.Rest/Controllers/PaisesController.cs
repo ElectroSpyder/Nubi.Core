@@ -37,5 +37,24 @@ namespace Nubi.Core.Api.Rest.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error : {ex.Message}");
             }
         }
+
+        [HttpGet("/busqueda")]
+        public async Task<IActionResult> GetBusqueda(string busqueda)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(busqueda))
+                    return StatusCode(StatusCodes.Status204NoContent, $"Advertencia, debe ingresar un valor valido");
+                var result = await _paisService.GetBusqueda(busqueda);
+                if (result.StatudCode)
+                    return Ok(result);
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error : {ex.Message}");
+            }
+        }
     }
+
 }

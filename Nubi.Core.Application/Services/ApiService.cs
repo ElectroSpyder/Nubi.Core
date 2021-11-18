@@ -1,15 +1,10 @@
 ﻿namespace Nubi.Core.Application.Services
 {
     using Microsoft.Extensions.Options;
-    using Newtonsoft.Json;
     using Nubi.Core.Application.DTO;
     using Nubi.Core.Application.Interfaces;
     using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
     using System.Net.Http;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     public class ApiService : IApiServices
@@ -21,21 +16,22 @@
             _urlBase = urlBase.Value;
         }
 
-        public async Task<Response> GetAsync<T>(string prefix, string controller, CancellationToken cancellationToken)
+        public async Task<string> GetAsync(string controller, string prefix, CancellationToken cancellationToken)
         {
             try
             {
                 var url = string.Empty;
                 var answer = string.Empty;
 
-                url = $"{_urlBase.UrlServer}{prefix}{controller}";
+                url = $"{_urlBase.UrlServer}{controller}{prefix}";
 
                 using var client = new HttpClient();
                 using var request = new HttpRequestMessage(HttpMethod.Get, url);
 
                 using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 
-                var stream = await response.Content.ReadAsStringAsync();
+                return await response.Content.ReadAsStringAsync();
+                /*var stream = await response.Content.ReadAsStreamAsync();
 
 
                 if (response.IsSuccessStatusCode == false)
@@ -43,7 +39,7 @@
                     return new Response
                     {
                          StatudCode = false,
-                        Result = stream
+                        Result = null
                     };
                     
                 }
@@ -51,26 +47,25 @@
                 return new Response
                 {
                     StatudCode = true,
-                    Result =stream,
+                    Result = DeserializeJsonFromStream<Temperatures>(stream),
                     Message = "Ok"
-                };
+                };*/
 
             }
             catch (Exception ex)
             {
-                return new Response
-                {
-                    StatudCode = false,
-                    Message = ex.Message
-                };
+                return null;
             }
         }
 
+       
         public Task<Response> PostAsync<T>(string prefix, string controller, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
+
+        /*
         private static async Task<string> StreamToStringAsync(Stream stream)
         {
             string content = null;
@@ -94,6 +89,6 @@
                 var searchResult = js.Deserialize<T>(jtr);
                 return searchResult;
             }
-        }
+        }*/
     }
 }
