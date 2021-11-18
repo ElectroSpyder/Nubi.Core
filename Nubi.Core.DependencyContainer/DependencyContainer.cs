@@ -14,6 +14,7 @@
             //CleanArchitecture.Application
             services.AddScoped<IPaisService, PaisService>();
             services.AddScoped<IUserService, UserService>();
+           
             //CleanArchitecture.Domain.Interfaces | CleanArchitecture.Infra.Data.Repositories
             //services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

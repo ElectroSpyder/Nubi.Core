@@ -1,15 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Nubi.Core.Application.DTO;
+using Nubi.Core.Application.Interfaces;
+using Nubi.Core.Application.Services;
 
-using Nubi.Core.Infrastructure.Data.Context;
-
-namespace Nubi.Core.Api.Rest
+namespace Nubi.Core.Web
 {
     public class Startup
     {
@@ -17,31 +15,22 @@ namespace Nubi.Core.Api.Rest
         {
             Configuration = configuration;
         }
+
         public IConfiguration Configuration { get; }
-
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            RegisterServices(services);
-            services.AddControllers();
+            services.AddControllersWithViews();
+            //RegisterServices(services);
+            services.AddScoped<ICurrencie, CurrencieService>();
+            services.AddScoped<IApiServices, ApiService>();
+
             //Direccion
             services.Configure<UrlBase>(Configuration.GetSection("UrlBase"));
 
             //agregado de httpclient
             services.AddHttpClient();
-
-            services.AddDbContext<UsuarioDbContext>(options =>
-            {
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"));
-            });
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Nubi.Core.Api.Rest", Version = "v1" });
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,11 +39,15 @@ namespace Nubi.Core.Api.Rest
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nubi.Core.Api.Rest v1"));
             }
-
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -62,13 +55,11 @@ namespace Nubi.Core.Api.Rest
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-
-        private static void RegisterServices(IServiceCollection services)
-        {
-            DependencyContainer.DependencyContainer.RegisterServices(services);
-        }
+       
     }
 }

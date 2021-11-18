@@ -22,7 +22,8 @@
             {
                 var url = string.Empty;
                 var answer = string.Empty;
-
+                if(string.IsNullOrEmpty(prefix))
+                    url = $"{_urlBase.UrlServer}{controller}";
                 url = $"{_urlBase.UrlServer}{controller}{prefix}";
 
                 using var client = new HttpClient();
