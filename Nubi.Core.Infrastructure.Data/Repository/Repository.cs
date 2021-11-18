@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    internal class Repository<T> : IRepository<T> where T : EntityBase
+    public class Repository<T> : IRepository<T> where T : EntityBase
     {
         private readonly UsuarioDbContext _context;
         private readonly DbSet<T> _entities;

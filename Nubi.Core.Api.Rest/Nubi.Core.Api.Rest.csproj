@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nubi.Core.Application\Nubi.Core.Application.csproj" />
+    <ProjectReference Include="..\Nubi.Core.DependencyContainer\Nubi.Core.DependencyContainer.csproj" />
     <ProjectReference Include="..\Nubi.Core.Infrastructure.Data\Nubi.Core.Infrastructure.Data.csproj" />
   </ItemGroup>
 

@@ -1,3 +1,4 @@
+using Nubi.Core.DependencyContainer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Nubi.Core.Application.DTO;
+
 using Nubi.Core.Infrastructure.Data.Context;
 using System;
 using System.Collections.Generic;
@@ -23,13 +25,14 @@ namespace Nubi.Core.Api.Rest
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
+ public IConfiguration Configuration { get; }
+       
+       
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            RegisterServices(services);
             services.AddControllers();
             //Direccion
             services.Configure<UrlBase>(Configuration.GetSection("UrlBase"));
@@ -69,6 +72,11 @@ namespace Nubi.Core.Api.Rest
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private static void RegisterServices(IServiceCollection services)
+        {
+            DependencyContainer.DependencyContainer.RegisterServices(services);
         }
     }
 }

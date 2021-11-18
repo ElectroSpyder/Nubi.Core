@@ -4,7 +4,7 @@
     using Nubi.Core.Domain.Models;
     using Nubi.Core.Infrastructure.Data.Context;
     using System.Threading.Tasks;
-    internal class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly UsuarioDbContext _context;
         private IRepository<User> _usersRepository;

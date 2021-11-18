@@ -1,12 +1,10 @@
 ﻿namespace Nubi.Core.Application.Interfaces
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using Nubi.Core.Application.DTO;
     using System.Threading.Tasks;
 
     public interface IPaisService
     {
+        Task<Response> GetPais(string id);
     }
 }

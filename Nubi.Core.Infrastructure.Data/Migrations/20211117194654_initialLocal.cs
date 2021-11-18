@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Nubi.Core.Infrastructure.Data.Migrations
 {
-    public partial class MigracionInicial : Migration
+    public partial class initialLocal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

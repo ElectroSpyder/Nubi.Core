@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nubi.Core.Application.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace Nubi.Core.Api.Rest.Controllers
 {
@@ -15,6 +17,25 @@ namespace Nubi.Core.Api.Rest.Controllers
             _paisService = paisService;
         }
 
+        [HttpGet("/pais")]
+        public async Task<IActionResult> GetUserInfo(string pais)
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(pais))
+                    return StatusCode(StatusCodes.Status204NoContent, $"Advertencia, debe ingresar un valor ");
+                if (pais == "BR" || pais == "CO")
+                    return StatusCode(StatusCodes.Status401Unauthorized);
 
+                var result = await _paisService.GetPais(pais);
+                if(result.StatudCode)
+                    return Ok(result);
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error : {ex.Message}");
+            }
+        }
     }
 }

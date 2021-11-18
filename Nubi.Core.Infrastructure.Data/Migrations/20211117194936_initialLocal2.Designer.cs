@@ -10,8 +10,8 @@ using Nubi.Core.Infrastructure.Data.Context;
 namespace Nubi.Core.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(UsuarioDbContext))]
-    [Migration("20211117123952_MigracionInicial")]
-    partial class MigracionInicial
+    [Migration("20211117194936_initialLocal2")]
+    partial class initialLocal2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

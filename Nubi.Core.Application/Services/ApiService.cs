@@ -35,7 +35,7 @@
 
                 using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
 
-                var stream = await response.Content.ReadAsStreamAsync();
+                var stream = await response.Content.ReadAsStringAsync();
 
 
                 if (response.IsSuccessStatusCode == false)
@@ -43,7 +43,7 @@
                     return new Response
                     {
                          StatudCode = false,
-                        Result = StreamToStringAsync(stream)
+                        Result = stream
                     };
                     
                 }
@@ -51,7 +51,7 @@
                 return new Response
                 {
                     StatudCode = true,
-                    Result = DeserializeJsonFromStream<T>(stream),
+                    Result =stream,
                     Message = "Ok"
                 };
 
