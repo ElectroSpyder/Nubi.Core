@@ -21,5 +21,24 @@ namespace Nubi.Core.Application.Mappring
                 site_id = root.site_id
             };
         }
+
+        public static UserDTO FromUserToUserDTO(User user)
+        {
+            return new UserDTO
+            {
+                Nombre = user.Nombre,
+                Apellido = user.Apellido,
+                Email = user.Email
+            };
+        }
+
+        public static User FromUserDTOToUser(UserDTO userDTO, User user)
+        {
+            user.Nombre = userDTO.Nombre == string.Empty ? user.Nombre: userDTO.Nombre;
+            user.Apellido = userDTO.Apellido == string.Empty ? user.Apellido : userDTO.Apellido;
+            user.Email = userDTO.Email == string.Empty ? user.Email : userDTO.Email;
+            user.Password = userDTO.Password == string.Empty ? user.Password : User.ComputeSha256Hash(userDTO.Password);
+            return user;
+        }
     }
 }

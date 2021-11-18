@@ -6,6 +6,8 @@
     using Nubi.Core.Infrastructure.Data.Context;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
@@ -16,6 +18,7 @@
             _context = context;
             _entities = context.Set<T>();
         }
+
         public async Task Delete(int id)
         {
             var entity = await _entities.FindAsync(id);
@@ -46,6 +49,13 @@
         public async Task Update(T entity)
         {
             _entities.Update(entity);
+        }
+
+        public async Task<T> GetSinglebyFound(Expression<Func<T, bool>> filter)
+        {
+            if (filter == null) return null;
+            var result = await _entities.FirstOrDefaultAsync(filter);
+            return result;
         }
     }
 }
