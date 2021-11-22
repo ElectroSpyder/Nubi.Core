@@ -6,6 +6,7 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using static Nubi.Core.Application.DTO.RootCurrencieDTO;
 
     public class CurrencieService : ICurrencie
     {
@@ -26,16 +27,24 @@
                 var result = await _apiServices.GetAsync("/currencies/", null, token);*/
 
                 var currencies = await GetCurrencie();
-                var root = JsonConvert.DeserializeObject<RootCurrencieDTO>(currencies);
-                var result = await GetCurrencyConversions(root.id);
+                var root = JsonConvert.DeserializeObject<RootCurrencieDTO[]>(currencies);
 
-                ///currency_conversions/search?from=XXX&to=USD
+                foreach (var item in root)
+                {
+                    var result = await GetCurrencyConversions(item.id);
+                    var todolar = JsonConvert.DeserializeObject<ToDolar>(result);
+                    if (todolar != null)
+                        item.todolar = todolar;
+
+                }
+               
+                
                 if (currencies == null)
                     return new Response
                     {
                         StatudCode = false,
                         Message = "Error",
-                        Result = currencies
+                        Result = null
                     };
 
                 //var rootFromJson = JsonConvert.DeserializeObject<Root>(result);
@@ -44,7 +53,7 @@
                 {
                     StatudCode = true,
                     Message = "Correcto",
-                    Result = currencies
+                    Result = root
                 };
             }
             catch (Exception ex)
