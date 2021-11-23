@@ -29,7 +29,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nubi.Core.Web", "Nubi.Core.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nubi.core.UnitTest", "Nubi.core.UnitTest", "{094FEC55-90CB-45B3-BC04-2A4917CBF51C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nubi.Core.UnitTest", "Nubi.Core.UnitTest\Nubi.Core.UnitTest.csproj", "{B2594433-6FAA-4280-B111-B98472DFAE15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nubi.Core.UnitTest", "Nubi.Core.UnitTest\Nubi.Core.UnitTest.csproj", "{B2594433-6FAA-4280-B111-B98472DFAE15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nubi.Core.Doc", "Nubi.Core.Doc", "{90D0CCBD-8CC0-4C92-AD11-6DF8AE7289B3}"
+	ProjectSection(SolutionItems) = preProject
+		leerDoc.txt = leerDoc.txt
+		C:\Users\Pedro\Documents\README.docx = C:\Users\Pedro\Documents\README.docx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
