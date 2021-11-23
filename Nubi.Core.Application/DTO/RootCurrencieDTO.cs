@@ -9,25 +9,8 @@ namespace Nubi.Core.Application.DTO
         public string description { get; set; }
         public string decimal_places { get; set; }
        
-        public ToDolar todolar { get; set; }
-        public class Location
-        {
-            public double latitude { get; set; }
-            public double longitude { get; set; }
-
-        }
-        public class Geo_information
-        {
-            public Location location { get; set; }
-
-        }
-        public class States
-        {
-            public string id { get; set; }
-            public string name { get; set; }
-
-        }
-
+        public ToDolar todolar { get; set; }      
+       
         public class ToDolar
         {
             public string currency_base { get; set; }
@@ -38,6 +21,7 @@ namespace Nubi.Core.Application.DTO
             public string creation_date { get; set; }
             public string valid_until { get; set; }
         }
+
        
     }
     

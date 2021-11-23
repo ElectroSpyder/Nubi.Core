@@ -18,6 +18,10 @@ namespace Nubi.Core.Api.Rest.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// Metodo que retorna todos los usarios del systema
+        /// </summary>
+        /// <returns>List of User</returns>
         [HttpGet("/GetAll")]
         public async Task<IActionResult> GetAllUsuarioAsync()
         {
@@ -34,6 +38,12 @@ namespace Nubi.Core.Api.Rest.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error : {ex.Message}");
             }
         }
+
+        /// <summary>
+        /// Metodo que permite agregar un obetjo del tipo Usuario
+        /// </summary>
+        /// <param name="userDTO">contiene {Nombre, Apellido, Email y Password, ademas de otros atributos}</param>
+        /// <returns>Ok</returns>
         [HttpPost("/add")]
         public async Task<IActionResult> AddUserAsync(UserDTO userDTO)
         {
@@ -50,6 +60,13 @@ namespace Nubi.Core.Api.Rest.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error : {ex.Message}");
             }
         }
+
+        /// <summary>
+        /// Metodo que permite actualizar un Usuario
+        /// </summary>
+        /// <param name="userDTO">contiene {Nombre, Apellido, Email y Password, ademas de otros atributos}</param>
+        /// <param name="id">contiene el identificador unico del sistema</param>
+        /// <returns></returns>
         [HttpPut("/update/{id:int}")]
         public async Task<IActionResult> UpdateUsuarioAsync(UserDTO userDTO, int id)
         {
@@ -67,6 +84,11 @@ namespace Nubi.Core.Api.Rest.Controllers
             }
         }
 
+        /// <summary>
+        /// Metodo que permite dar de baja un usuario, de forma logica
+        /// </summary>
+        /// <param name="id">Identificador del usuario a dar de baja</param>
+        /// <returns></returns>
         [HttpGet("/delete")]
         public async Task<IActionResult> DeleteUsuarioAsync(int id)
         {

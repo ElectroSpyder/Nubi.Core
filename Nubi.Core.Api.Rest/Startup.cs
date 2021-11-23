@@ -8,6 +8,9 @@ using Microsoft.OpenApi.Models;
 using Nubi.Core.Application.DTO;
 
 using Nubi.Core.Infrastructure.Data.Context;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace Nubi.Core.Api.Rest
 {
@@ -41,6 +44,7 @@ namespace Nubi.Core.Api.Rest
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Nubi.Core.Api.Rest", Version = "v1" });
+                
             });
         }
 
@@ -51,7 +55,7 @@ namespace Nubi.Core.Api.Rest
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nubi.Core.Api.Rest v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nubi.Core.Api.Rest"));
             }
 
             app.UseHttpsRedirection();

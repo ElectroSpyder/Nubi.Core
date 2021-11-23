@@ -17,8 +17,13 @@ namespace Nubi.Core.Api.Rest.Controllers
             _paisService = paisService;
         }
 
+        /// <summary>
+        /// Metodo que permite obtener un Pais en especifico
+        /// </summary>
+        /// <param name="pais">el identificador que es uns tring y pueden ser AR, BR y CO</param>
+        /// <returns>Datos del Pais</returns>
         [HttpGet("/pais")]
-        public async Task<IActionResult> GetUserInfo(string pais)
+        public async Task<IActionResult> GetPais(string pais)
         {
             try
             {
@@ -38,6 +43,11 @@ namespace Nubi.Core.Api.Rest.Controllers
             }
         }
 
+        /// <summary>
+        /// Metodo que permite realizar un busqueda 
+        /// </summary>
+        /// <param name="busqueda">parametro de busqueda</param>
+        /// <returns>datos del pais</returns>
         [HttpGet("/busqueda")]
         public async Task<IActionResult> GetBusqueda(string busqueda)
         {

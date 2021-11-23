@@ -4,6 +4,8 @@
     using System.Threading.Tasks;
     public interface ICurrencie
     {
-        Task<Response> GetDataFromNubimetric();
+        Task<ResponseWeb> GetDataFromNubimetric();
+        Task<ResponseWeb> WriteJson(RootCurrencieDTO[] root);
+        bool WriteSCVFile(RootCurrencieDTO[] root);
     }
 }

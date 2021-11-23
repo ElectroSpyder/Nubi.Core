@@ -25,6 +25,7 @@ namespace Nubi.Core.Web
             //RegisterServices(services);
             services.AddScoped<ICurrencie, CurrencieService>();
             services.AddScoped<IApiServices, ApiService>();
+            services.AddScoped<ICSVFileService, CSVFileService>();
 
             //Direccion
             services.Configure<UrlBase>(Configuration.GetSection("UrlBase"));
