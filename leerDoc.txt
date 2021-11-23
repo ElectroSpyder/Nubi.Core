@@ -1,1 +1,27 @@
-Para poder ejecutar 
+Para poder crear la base lo que se debe hacer es lo siguiente:
+1_ Cambiar la cadena de conexión, cambiar el nombre-instancia con el nombre de la instancia o servidor sql, luego en Database dejar el nombre de la base o cambiar a gusto.
+
+"Server=nombre-instancia;Database=DbUsuario;user id=sa;password=nacion77;Integrated Security=False;Trusted_Connection=False;" 
+
+2_ Abrir la Consola del Administrador de paquetes
+3_ Escribir Add-Migration “InitialMigration”
+4_ Escribir Update-database
+5_ con estos comandos se va a crear la base y se va a popular con datos.
+
+Arquitectura Clean
+
+Se encaró el challenge con una arquitectura Limpia (Clean) donde se separó las responsabilidades.
+Nubi.Core.Domain  contiene las clases bases e interfaces más importantes que van a interactuar con la base de datos.
+Nubi.Core.Infrastructure.Data contiene el contexto, la implementación de las interfaces en la carpeta Repository y una carpeta con la migración inicial.
+Nubi.Core.Application contiene los servicios que usan las implementaciones de las interfaces para trabajar con los requerimientos del sistema, usan dto para visualizar o recibir datos del o al exterior y un mapeo sin usar biblioteca Mapping. Además, usa unas interfaces que no trabajan con la base de datos, por esa razón las tengo allí.
+Nubi.Core.Api contiene el Api que usa la capa de aplicación para ejecutar los requerimientos.
+Nubi.Core.Infrastructure.IoC para contener toda las dependencias en un solo lugar.
+Nubi.core.UnitTest contiene unas cuantas pruebas unitarias, solo para demostrar conocimiento del tema.
+Nubi.Core.Web  contiene el sistema para resolver el punto 2, lo uso en la misma arquitectura porque la misma contiene mucho código, proyectos y patrones re utilizables, en este caso en el startup se registra los servicios.
+Nubi.Core.Doc contiene la documentación pertinente.
+
+Patrones usados
+UnitOfWork
+Patron Repository
+luego nose que otro parton uso,
+lo implemento pero no se como se llama o si lo estoy usando.
