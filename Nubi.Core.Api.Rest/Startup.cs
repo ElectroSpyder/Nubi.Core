@@ -8,9 +8,6 @@ using Microsoft.OpenApi.Models;
 using Nubi.Core.Application.DTO;
 
 using Nubi.Core.Infrastructure.Data.Context;
-using System;
-using System.IO;
-using System.Reflection;
 
 namespace Nubi.Core.Api.Rest
 {
